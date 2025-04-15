@@ -1,9 +1,15 @@
 <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
   <form class="bg-dark text-white p-5 rounded shadow" style="min-width: 350px;" (ngSubmit)="onLogin()">
+    <div class="d-flex align-items-center mb-4">
 
-    <h6 class="text-center mb-4" style="font-family: 'Segoe UI', sans-serif; font-weight: bold; font-size: 2.5rem; color: #0d6efd;">
-      🏦 MAROUF BANK
-    </h6>
+      <a [routerLink]="'/'" class="text-light me-3 text-decoration-none" style="font-size: 1.5rem; cursor: pointer;">
+        <i class="bi bi-arrow-left-circle"></i>
+      </a>
+
+      <h6 class="m-0" style="font-family: 'Segoe UI', sans-serif; font-weight: bold; font-size: 2.5rem; color: #0d6efd;">
+        🏦 MAROUF BANK
+      </h6>
+    </div>
 
     <h2 class="text-center mb-4">Login</h2>
 
