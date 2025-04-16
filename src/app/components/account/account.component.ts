@@ -3,21 +3,22 @@ import { CommonModule } from '@angular/common';
 import { Account } from '../../interfaces/Account';
 import { AccountService } from '../../services/account.service';
 import { CreditCardFormatterPipe } from '../../pipes/credit-card-formatter.pipe';
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 
 @Component({
   selector: 'app-account',
   standalone: true,
-  imports: [CommonModule, CreditCardFormatterPipe],
+  imports: [CommonModule, CreditCardFormatterPipe, RouterOutlet, RouterLink],
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent {
   account!: Account;
 
-  password : string = '************';
   protected showPassword: boolean = false;
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.account = this.accountService.Account;
@@ -25,11 +26,10 @@ export class AccountComponent {
 
   togglePassword() {
     this.showPassword = !this.showPassword;
-    if (this.showPassword) {
-      this.password = this.account.passwordHash;
-    } else {
-      this.password = '************';
-    }
   }
 
+  logout() {
+    this.accountService.logout();
+    this.router.navigate(['']);
+  }
 }

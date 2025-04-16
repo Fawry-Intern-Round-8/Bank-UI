@@ -1,0 +1,48 @@
+<div class="container py-4">
+  <h4 class="text-info mb-3">
+    <i class="bi bi-clock-history me-2"></i>Transaction History
+  </h4>
+
+  <div *ngIf="isLoading" class="text-center text-secondary py-5">
+    <div class="spinner-border text-info" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <div class="mt-2">Loading transactions...</div>
+  </div>
+
+  <div *ngIf="transactions.length === 0 && !isLoading" class="alert alert-warning text-danger">
+    No transactions available.
+  </div>
+
+  <div *ngIf="transactions.length > 0 && !isLoading" class="table-responsive">
+    <table class="table table-dark table-bordered table-hover align-middle text-center">
+      <thead class="table-light text-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Description</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Type</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let tx of transactions; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ tx.date | date:'short' }}</td>
+        <td>{{ tx.notes || 'Transaction' }}</td>
+        <td [ngClass]="tx.type === 'DEPOSIT' ? 'text-success' : 'text-danger'">
+          {{ tx.amount | currency:'USD':'symbol' }}
+        </td>
+        <td>
+            <span class="badge" [ngClass]="{
+              'bg-success': tx.type === 'DEPOSIT',
+              'bg-danger': tx.type === 'WITHDRAW'
+            }">
+              {{ tx.type === 'DEPOSIT' ? 'Received' : (tx.type === 'DEPOSIT' ? 'Sent' : 'Neutral') }}
+            </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
