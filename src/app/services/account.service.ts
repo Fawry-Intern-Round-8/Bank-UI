@@ -10,14 +10,18 @@ import {Account} from '../interfaces/Account';
 export class AccountService {
   private apiUrl = 'http://localhost:8080/accounts';
 
+  Account!: Account;
+
   constructor(private http: HttpClient) {}
 
   createAccount(account: Account): Observable<Account> {
     return this.http.post<Account>(`${this.apiUrl}/create`, account);
   }
 
-  getAccountById(id: string): Observable<Account> {
-    return this.http.get<Account>(`${this.apiUrl}/${id}`);
+
+  authenticate(email: string, password: string): Observable<Account> {
+    console.log(email, '  ', password);
+    return this.http.post<Account>(`${this.apiUrl}/login`, {email, password});
   }
 
 }
