@@ -1,3 +1,67 @@
-<div class="container">
-  <h1>Account</h1>
+<div class="container py-5">
+  <div class="card bg-dark text-white border-secondary">
+    <div class="card-header bg-black border-bottom border-info">
+      <h3 class="mb-0 text-info">
+        <i class="bi bi-person-badge me-2"></i>
+        {{ account.name }}
+      </h3>
+    </div>
+    <div class="card-body">
+      <div class="row g-4">
+
+        <div class="col-md-6">
+
+          <div class="mb-3 border-bottom border-secondary pb-2">
+            <div class="small">Email Address</div>
+            <div class="h6 text-break text-success">{{ account.email }}</div>
+          </div>
+
+          <div class="mb-3 border-bottom border-secondary pb-2">
+            <div class="small">Card Number</div>
+            <div class="h6 font-monospace text-success">
+              {{ account.cardNumber | creditCardFormatter }}
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-6">
+          <div class="mb-3 border-bottom border-secondary pb-2">
+            <div class="small">Password</div>
+            <div class="input-group">
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control"
+                [value]="password"
+                readonly>
+
+              <button class="btn btn-outline-info"
+                      type="button"
+                      (click)="togglePassword()">
+                <i class="bi {{ showPassword ? 'bi-eye-slash' : 'bi-eye' }}"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="mb-3 border-bottom border-secondary pb-2">
+            <div class="small">Account Balance</div>
+            <div class="h5 text-success">
+              {{ account.balance | currency:'USD':'symbol':'1.2-2' }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col">
+          <div class="d-flex justify-content-center">
+            <span class="badge {{ account.isActive ? 'bg-success' : 'bg-danger' }} fs-6 py-2 px-4">
+              <i class="bi {{ account.isActive ? 'bi-check-circle' : 'bi-x-circle' }} me-2"></i>
+              {{ account.isActive ? 'Active Account' : 'Inactive Account' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
