@@ -24,7 +24,6 @@ export class LoginComponent {
   onLogin() {
     this.accountService.authenticate(this.form.email, this.form.password).subscribe({
       next: (response) => {
-        console.log("Login successful:", response);
         this.accountService.Account = response;
         this.router.navigate(['/account']);
       },

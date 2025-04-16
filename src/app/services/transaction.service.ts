@@ -11,7 +11,7 @@ export class TransactionService {
   }
 
   getTransactions(accountId: number) {
-    return this.http.get<Transaction[]>(`http://localhost:8080/transactions/account/${accountId}`);
+    return this.http.get<Transaction[]>(`http://localhost:8081/bank/transactions/account/${accountId}`);
   }
 
 }

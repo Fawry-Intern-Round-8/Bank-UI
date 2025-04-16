@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Account } from '../interfaces/Account';
+import {AccountRequest} from '../interfaces/account-request';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  private apiUrl = 'http://localhost:8080/accounts';
+  private apiUrl = 'http://localhost:8081/bank/accounts';
 
   private _account!: Account;
 
@@ -27,12 +28,11 @@ export class AccountService {
     }
   }
 
-  createAccount(account: Account): Observable<Account> {
+  createAccount(account: AccountRequest): Observable<Account> {
     return this.http.post<Account>(`${this.apiUrl}/create`, account);
   }
 
   authenticate(email: string, password: string): Observable<Account> {
-    console.log(email, '  ', password);
     return this.http.post<Account>(`${this.apiUrl}/login`, { email, password });
   }
 
