@@ -3,7 +3,7 @@ export interface Account {
   cardNumber: string;
   name: string;
   email: string;
-  password: string;
+  passwordHash: string;
   balance: number;
   isActive: boolean;
 }
