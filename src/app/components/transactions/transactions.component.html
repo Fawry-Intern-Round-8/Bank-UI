@@ -28,7 +28,7 @@
       <tbody>
       <tr *ngFor="let tx of transactions; let i = index">
         <th scope="row">{{ i + 1 }}</th>
-        <td>{{ tx.date | date:'short' }}</td>
+        <td>{{ tx.date | date }}</td>
         <td>{{ tx.notes || 'Transaction' }}</td>
         <td [ngClass]="tx.type === 'DEPOSIT' ? 'text-success' : 'text-danger'">
           {{ tx.amount | currency:'USD':'symbol' }}
